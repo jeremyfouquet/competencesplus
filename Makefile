@@ -1,10 +1,11 @@
 .ONESHELL:
 .DEFAULT_GOAL:= run
+P3 = python3
 PYTHON= ./venv/bin/python3
 PIP= ./venv/bin/pip
 
 venv/bin/activate: requirements.txt
-	python -m venv venv
+	$(P3) -m venv venv
 	chmod +x venv/bin/activate
 	. ./venv/bin/activate
 	$(PIP) install -r requirements.txt
@@ -19,5 +20,10 @@ run: venv
 clean:
 	rm -rf app/__pycache__
 	rm -rf venv
+
+linux_packages:
+	sudo apt-get install python3-tk
+	sudo apt-get install python3-pip
+	sudo apt-get install python3-venv
 
 .PHONY: run clean

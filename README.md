@@ -27,7 +27,7 @@ Version Python nécéssaire >= 3.7
 
 Vérifier la version Python:
 ```
-$ python --version
+$ python3 --version
 ```
 
 Mettre à jours la version de Python:
@@ -48,6 +48,14 @@ $ make run
 Nettoyer le cache
 ```
 $ make clean
+```
+
+Installer les packages suivant (pouvant être manquant sur le système linux):
+- python3-pip
+- python3-venv
+- python3-tk
+```
+$ make linux_packages
 ```
 
 ## Structure

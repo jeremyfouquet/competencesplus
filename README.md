@@ -1,24 +1,54 @@
-# competencesplus
- Application de recherche et analyse de compétences en informatique
+# CompetencesPlus
+
+Application de recherche et analyse de compétences en informatique
+
+## Version
+
+1.0.0
 
 ## Projet
 
+## Auteur
+
+Jeremy Fouquet
+
+## Url Projet
+
 https://github.com/jeremyfouquet/competencesplus.git
+
+## license
+
+MIT License
 
 ## Exigences
 
-Version utiliser de Python = 3.9
-Version minimum nécéssaire de Python = 3.7
+Version Python utilisé = 3.9
+Version Python nécéssaire >= 3.7
 
-Pour vérifier la version Python:
-    $ python --version
+Vérifier la version Python:
+```
+$ python --version
+```
 
-Pour mettre à jours la version de Python:
-    $ sudo apt update
-    $ sudo apt install pythonX.X
+Mettre à jours la version de Python:
+```
+$ sudo apt update
+$ sudo apt install pythonX.X
+```
 
-Pour installer les packages nécéssaire:
-    $ pip install -r requirements.txt
+Les packages utilisé sont dans `requirements.txt`
+
+## Utilisation
+
+Executer le programme
+```
+$ make run
+```
+    
+Nettoyer le cache
+```
+$ make clean
+```
 
 ## Structure
     .

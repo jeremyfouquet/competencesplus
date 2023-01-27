@@ -44,7 +44,7 @@ Executer le programme
 ```
 $ make run
 ```
-    
+
 Nettoyer le cache
 ```
 $ make clean

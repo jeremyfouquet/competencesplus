@@ -51,7 +51,6 @@ $ make clean
 ```
 
 Installer les packages suivant (pouvant être manquant sur le système linux):
-- python3-pip
 - python3-venv
 - python3-tk
 ```

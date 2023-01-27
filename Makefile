@@ -8,6 +8,7 @@ venv/bin/activate: requirements.txt
 	$(P3) -m venv venv
 	chmod +x venv/bin/activate
 	. ./venv/bin/activate
+	$(PYTHON) -m pip install --upgrade pip
 	$(PIP) install -r requirements.txt
 	$(PYTHON) -m spacy download fr_core_news_md
 
@@ -23,7 +24,6 @@ clean:
 
 linux_packages:
 	sudo apt-get install python3-tk
-	sudo apt-get install python3-pip
 	sudo apt-get install python3-venv
 
 .PHONY: run clean

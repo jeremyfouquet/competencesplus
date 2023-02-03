@@ -1,7 +1,7 @@
 from tkinter import *
 from extraire import extraire
 from analyser import analyser
-from sauvegarder import sauvegarder
+from connecter import connecter
 
 class main:
     value = -1
@@ -23,7 +23,7 @@ class main:
         if main.value == 1:
             extraire.commencer()
         elif main.value == 2:
-            sauvegarder.commencer()
+            connecter.sauvegarder()
         elif main.value == 3:
             analyser.commencer()
         else :

@@ -2,11 +2,13 @@ import pandas as pd
 import psycopg2
 import json
 import csv
+from tkinter import *
+
 
 class connecter:
     repertoire = './assets/'
 
-    def connect_bdd():
+    def connecter_bdd():
         """
         Se connecte à la base postgreSql
 
@@ -26,7 +28,7 @@ class connecter:
             database = config['database'])
         return conn
 
-    def register_bdd(data):
+    def enregister_bdd(data):
         """
         Enregistre les données recupérés par la fonction charger_et_nettoyer()
         depuis une connexion en base de donnée par la fonction connect_bdd()
@@ -41,7 +43,7 @@ class connecter:
             information succes ou erreur
         """
         try:
-            conn = connecter.connect_bdd()
+            conn = connecter.connecter_bdd()
             cur = conn.cursor()
             # valide les modifications automatiquement
             conn.autocommit = True
@@ -68,7 +70,21 @@ class connecter:
             m = 'Erreur Nettoyage/Enregistrement\n'+str(error)
             return m
 
-    def save_bdd_csv():
+    def sauvegarder():
+        root = Tk()
+        root.geometry('500x200')
+        root.title('Compétences Plus')
+        titre = Label(text='Sauvergarde en cours ...')
+        titre.pack(pady=20)
+        info = connecter.sauvegarder_bdd_csv()
+        if info == 'Succes Enregistrement':
+            titre.config(text="Sauvergarde Terminé")
+        else:
+            titre.config(text=info)
+        root.update()
+        root.mainloop()
+
+    def sauvegarder_bdd_csv():
         """
         Charge les données depuis une connexion en base de donnée par la fonction connect_bdd() pour les enregistrer dans un fchier csv
         Si la connexion réussi :
@@ -84,7 +100,7 @@ class connecter:
             information succes ou erreur
         """
         try:
-            conn = connecter.connect_bdd()
+            conn = connecter.connecter_bdd()
             cur = conn.cursor()
             cur.execute('''SELECT identifiant, metier, competences FROM competences
                 ORDER BY metier ASC, "date" DESC;''')
@@ -101,7 +117,7 @@ class connecter:
             m = 'Erreur Sauvergarde\n'+str(error)
             return m
 
-    def charger_bdd_or_csv():
+    def charger_bdd_ou_csv():
         """
         Charge les données depuis une connexion en base de donnée par la fonction connect_bdd() ou depuis un fichier local csv
         Si la connexion réussi :
@@ -116,7 +132,7 @@ class connecter:
             dataframe du corpus de competences
         """
         try:
-            conn = connecter.connect_bdd()
+            conn = connecter.connecter_bdd()
             cur = conn.cursor()
             cur.execute('''SELECT identifiant, metier, competences, "date" FROM competences
                 ORDER BY metier ASC, "date" DESC;''')

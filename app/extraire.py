@@ -23,8 +23,8 @@ class extraire:
     def commencer():
         def valider(val):
             root.destroy()
-            extraire.register_csv("https://candidat.pole-emploi.fr/offres/emploi/informatique-telecoms/s28", int(val))
-            extraire.charger_et_nettoyer()
+            extraire.aspirer_csv("https://candidat.pole-emploi.fr/offres/emploi/informatique-telecoms/s28", int(val))
+            extraire.nettoyer_enregistrer()
         root = Tk()
         root.title('Compétences Plus')
         titre = Label(text='Vous allez aspirer, nettoyer et stocker un corpus de compétences, pour 30 métiers du domaine informatique, depuis le site Pôle emploi')
@@ -37,7 +37,7 @@ class extraire:
         btn.pack(pady=20)
         root.mainloop()
 
-    def register_csv(url, nb_sources):
+    def aspirer_csv(url, nb_sources):
         """
         Extrait n=nb_sources annonces pour chacun des 30 métiers les plus recherchés du domaine d'activité de l'url passé en paramètre
 
@@ -62,13 +62,13 @@ class extraire:
             debut = len([nom for nom in os.listdir(extraire.repertoire+sous_repertoire) if nom.endswith('csv')])
             update(debut)
             # liste de 30 urls de recherche d'offre d'emploi automatique par métier
-            urls_jobs = extraire.load_page_urls(url)
+            urls_jobs = extraire.charger_page_urls(url)
             # reprend la boucle en filtrant les urls déjà extraites
             for i_url, url_job in enumerate(urls_jobs[debut:]):
-                sources = extraire.load_and_exctract_jobs(url_job, nb_sources)
+                sources = extraire.charger_liste_metiers(url_job, nb_sources)
                 dataframe = []
                 for source in sources:
-                    dataframe.append(extraire.get_data(source))
+                    dataframe.append(extraire.decoder_attributs(source))
                 df = pd.DataFrame(dataframe, columns=['metier', 'identifiant', 'competences', 'savoir-etre'], dtype="string")
                 df.to_csv(extraire.repertoire+sous_repertoire+"/df_"+str(i_url+debut)+".csv", index=False)
                 update(i_url+debut+1)
@@ -86,7 +86,7 @@ class extraire:
         register()
         root.mainloop()
 
-    def load_page_urls(url):
+    def charger_page_urls(url):
         """
         Charge la page web de l'url passé en paramètre pour en extraire une liste d'url correspondant à des liens vers des recherches d'offres d'emploi par métier
 
@@ -110,7 +110,7 @@ class extraire:
         driver.quit()
         return urls_jobs
 
-    def load_and_exctract_jobs(url, nb_jobs=1000):
+    def charger_liste_metiers(url, nb_jobs=1000):
         """
         Charge la page web de l'url passé en paramètre pour en extraire une liste de n=nb_jobs codes source correspondant aux offres d'emploi par métier
 
@@ -158,7 +158,7 @@ class extraire:
         driver.quit()
         return sources
 
-    def get_data(source):
+    def decoder_attributs(source):
         """
         Récupère dans une liste les attributs titre, identifiant, compétences et savoir-être professionnel du code source HTML passé en paramètre
 
@@ -206,9 +206,9 @@ class extraire:
         data.append(savoirs_string)
         return data
 
-    def charger_et_nettoyer(sw=[]):
+    def nettoyer_enregistrer(sw=[]):
         """
-        Appele les fonction get_dataframe() et nettoyer_data()
+        Appele les fonction nettoyer_data et register_bdd
         """
         root = Tk()
         root.geometry('500x200')
@@ -217,7 +217,7 @@ class extraire:
         titre.pack(pady=20)
         root.update()
         data = extraire.nettoyer_data(pd.read_csv(extraire.repertoire+"df_complet.csv", dtype={'metier': "string", 'identifiant': "string", 'competences': "string", 'savoir-etre': "string"}), sw)
-        info = connecter.register_bdd(data)
+        info = connecter.enregister_bdd(data)
         titre.config(text=info)
         root.update()
         root.mainloop()

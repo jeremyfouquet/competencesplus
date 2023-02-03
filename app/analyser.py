@@ -8,7 +8,7 @@ from connecter import connecter
 class analyser:
 
     def commencer():
-        corpus_e = analyser.equilibre_data(connecter.charger_bdd_or_csv())
+        corpus_e = analyser.equilibre_data(connecter.charger_bdd_ou_csv())
 
         def choix(val):
             root.destroy()
@@ -20,14 +20,14 @@ class analyser:
         label.pack(pady=20)
         label1 = Label(text='Choissez votre métier dans la liste')
         label1.pack(pady=5)
-        listeCombo = ttk.Combobox(values=list(analyser.grp_by_metier(corpus_e).index.values), state='readonly', width=50)
+        listeCombo = ttk.Combobox(values=list(analyser.grp_metier(corpus_e).index.values), state='readonly', width=50)
         listeCombo.current(0)
         listeCombo.pack()
         btn1 = Button(text='valider', command=lambda:choix(listeCombo.get()))
         btn1.pack(pady=20)
         root.mainloop()
 
-    def grp_by_metier(data):
+    def grp_metier(data):
         """
         retourne un dataframe en 2 colonnes (metier, nb_ligne)
 
@@ -75,7 +75,7 @@ class analyser:
         data : dataframe
             dataframe du corpus de compétences en 4 colonnes (identifiant, metier, competences, date)
         """
-        result = analyser.grp_by_metier(data)
+        result = analyser.grp_metier(data)
         median = analyser.mediane(result, 'nb_ligne')
         result = result[result['nb_ligne'] >= median]
         median = analyser.mediane(result, 'nb_ligne')

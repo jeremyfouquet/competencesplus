@@ -63,8 +63,7 @@ $ make linux_packages
         ├── main.py
         ├── extraire.py
         ├── analyser.py
-        ├── connecter.py
-        └── __init__.py
+        └── connecter.py
     ├── assets
     ├── tests
     ├── Makefile

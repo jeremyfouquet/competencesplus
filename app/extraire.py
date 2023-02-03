@@ -210,16 +210,6 @@ class extraire:
         """
         Appele les fonction get_dataframe() et nettoyer_data()
         """
-        def sauvegarder():
-            titre.config(text="Sauvergarde en cours ...")
-            btn1.destroy()
-            info = connecter.save_bdd_csv()
-            if info == 'Succes Enregistrement':
-                titre.config(text="Sauvergarde Terminé")
-            else:
-                titre.config(text=info)
-            root.update()
-
         root = Tk()
         root.geometry('500x200')
         root.title('Compétences Plus')
@@ -228,12 +218,7 @@ class extraire:
         root.update()
         data = extraire.nettoyer_data(pd.read_csv(extraire.repertoire+"df_complet.csv", dtype={'metier': "string", 'identifiant': "string", 'competences': "string", 'savoir-etre': "string"}), sw)
         info = connecter.register_bdd(data)
-        if info == 'Succes Enregistrement':
-            titre.config(text="Nettoyage/Enregistrement Terminé")
-            btn1 = Button(text='Sauvegarder au format CSV', command=sauvegarder)
-            btn1.pack(pady=20)
-        else:
-            titre.config(text=info)
+        titre.config(text=info)
         root.update()
         root.mainloop()
 

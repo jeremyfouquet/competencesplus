@@ -8,9 +8,20 @@ from connecter import connecter
 class analyser:
 
     def commencer():
+        """
+        Interface graphique donnant le choix du métier à évaluer
+        """
+        # dataframe du corpus de compétences équilibré
         corpus_e = analyser.equilibre_data(connecter.charger_bdd_ou_csv())
 
         def choix(val):
+            """
+            Recupère en paramettre la valeur val du métier à évaluer puis ferme l'interface avant d'appeller la fonction visualiser_resultat
+            Parameters
+            -------
+            val : str
+                metier choisi à évaluer
+            """
             root.destroy()
             analyser.visualiser_resultat(val, corpus_e)
 
@@ -30,7 +41,7 @@ class analyser:
     def grp_metier(data):
         """
         retourne un dataframe en 2 colonnes (metier, nb_ligne)
-        Params
+        Parameters
         -------
         data : dataframe
             dataframe du corpus de compétences en 4 colonnes (identifiant, metier, competences, date)
@@ -45,7 +56,7 @@ class analyser:
     def mediane(data, colname, f=False):
         """
         retourne la mediane d'une série de nombre
-        Params
+        Parameters
         -------
         data : dataframe
             dataframe du corpus de compétences groupé par metier
@@ -66,7 +77,7 @@ class analyser:
     def equilibre_data(data):
         """
         Equilibre les données du corpus passé en paramettre en supprimant les métiers non représentatif et en gardant uniquement un nombre n de données >= à la mediane
-        Params
+        Parameters
         -------
         data : dataframe
             dataframe du corpus de compétences en 4 colonnes (identifiant, metier, competences, date)
@@ -84,7 +95,7 @@ class analyser:
     def competences_occurences(data, nb=15, metier=None):
         """
         Affiche les n=nb compétences les plus fréquentes ainsi que leurs nombre de répétition par metier=metier
-        Params
+        Parameters
         -------
         data : dataframe
             dataframe du corpus de compétences en 4 colonnes (identifiant, metier, competences, date)
@@ -113,7 +124,7 @@ class analyser:
     def metier_competences(data):
         """
         Créé et retourne un dataframe en regroupant l'ensemble des compétence par metier
-        Params
+        Parameters
         -------
         data : dataframe
             dataframe du corpus de compétences en 4 colonnes (identifiant, metier, competences, date)
@@ -132,7 +143,7 @@ class analyser:
     def tf_idf(data, metier):
         """
         Convertie la colonne 'competences' à l'aide de TfidfVectorizer au format TF-IDF (fréquence de terme - fréquence de document inverse) avec la distance cosinus pour trouver les voisins les plus proches du metier en parametre.
-        Params
+        Parameters
         -------
         data : dataframe
             dataframe du corpus de compétences en 4 colonnes (identifiant, metier, competences, date)
@@ -157,6 +168,15 @@ class analyser:
         return nearest_info
 
     def visualiser_resultat(metier, data):
+        """
+        Interface graphique affichant la liste des 15 compétences les plus recherchés ainsi que la liste des metiers les plus proches du metier passé en paramettre
+        Parameters
+        -------
+        metier : str
+            metier à évaluer
+        data : dataframe
+            ataframe du corpus de compétences équilibré
+        """
         corpus_c = analyser.competences_occurences(data, metier=metier)
         liste_c = list(corpus_c.index.values)
         corpus_tfidf = analyser.tf_idf(data, metier)
@@ -167,16 +187,12 @@ class analyser:
 
         frame = Frame(root)
         frame.pack(fill=BOTH, expand=1)
-
         canvas = Canvas(frame)
         canvas.pack(side=LEFT, fill=BOTH, expand=1)
-
         scrollb = ttk.Scrollbar(frame, orient=VERTICAL, command=canvas.yview)
         scrollb.pack(side=RIGHT, fill=Y)
-
         canvas.bind('<Configure>', lambda e: canvas.config(scrollregion = canvas.bbox(ALL)))
         canvas.configure(yscrollcommand=scrollb.set)
-
         s_frame = Frame(canvas)
         canvas.create_window((0,0), window=s_frame, anchor="nw")
 

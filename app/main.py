@@ -6,7 +6,17 @@ from connecter import connecter
 class main:
     value = -1
     def commencer():
+        """
+        Interface graphique donnant 3 choix d'action à l'utilisateur
+        """
         def choix(val):
+            """
+            Affect a value la valeur du paramettre val puis ferme l'interface
+            Parameters
+            ----------
+            val : int
+                choix de l'action
+            """
             main.value = val
             root.destroy()
         root = Tk()
@@ -21,10 +31,13 @@ class main:
         btn3.pack(pady=20)
         root.mainloop()
         if main.value == 1:
+            # création du corpus de compétences
             extraire.commencer()
         elif main.value == 2:
+            # sauvagarde la base de données dans un fichier csv
             connecter.sauvegarder()
         elif main.value == 3:
+            # évaluation du corpus de compétences
             analyser.commencer()
         else :
             exit(0)

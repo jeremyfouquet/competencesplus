@@ -18,12 +18,15 @@ venv: venv/bin/activate
 run: venv
 	$(PYTHON) app/main.py
 
+unittests: venv
+	$(PYTHON) app/extraire_t.py
+
 clean:
 	rm -rf app/__pycache__
 	rm -rf venv
 
-linux_packages:
+i_linuxpackages:
 	sudo apt-get install python3-tk
 	sudo apt-get install python3-venv
 
-.PHONY: run clean
+.PHONY: run clean unittests i_linuxpackages

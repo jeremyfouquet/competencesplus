@@ -230,7 +230,7 @@ class extraire:
             Texte normalisé
         """
         punct_to_avoid = ['(', ')']
-        terms_to_avoid = ['etc','h/f', '/', '-']
+        terms_to_avoid = ['etc', '/', '-']
         sentence_w_punct = ''.join([i for i in text if i not in punct_to_avoid])
         tokenize_sentence = nlp(sentence_w_punct)
         words_lemmatize = (w.lemma_ for w in tokenize_sentence)

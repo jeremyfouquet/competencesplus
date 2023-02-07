@@ -21,7 +21,17 @@ class extraire:
     repertoire = './assets/'
 
     def commencer():
+        """
+        Interface graphique donnant le choix du nombre d'annonces par métier à extraire
+        """
         def valider(val):
+            """
+            Ferme l'interface et appels les fonction aspirer_csv et nettoyer_enregistrer
+            Parameters
+            ----------
+            val : str
+                nombre textuelle d'annonces à extraire
+            """
             root.destroy()
             extraire.aspirer_csv(int(val))
             extraire.nettoyer_enregistrer()
@@ -40,7 +50,6 @@ class extraire:
     def charger_page_urls():
         """
         Retourne la liste des urls correspondant aux recherches d’annonces de tous les métiers du secteur ‘informatique-telecoms’
-
         Returns
         -------
         urls_jobs : list
@@ -151,9 +160,19 @@ class extraire:
 
     def aspirer_csv(nb_sources):
         """
+        Interface indiquant l'extraction en cours et le nombre déjà réalisé
+        Parameters
+        ----------
+        nb_sources : int
+            nombre d'annonces à extraire par métier
         """
         def update(nb_file):
             """
+            Met à jours le nombre d'extraction déjà réalisé
+            Parameters
+            ----------
+            nb_file : int
+                nombre de métier déjà extrait
             """
             label.config(text="Aspiration "+str(nb_file)+"/30")
             root.update()
@@ -247,7 +266,7 @@ class extraire:
 
     def nettoyer_enregistrer():
         """
-        Appele les fonction nettoyer_data et register_bdd
+        Interface indiquant que le nettoyage est en cours puis appels les fonctions nettoyer_data et enregister_bdd
         """
         root = Tk()
         root.geometry('500x200')
@@ -256,12 +275,8 @@ class extraire:
         titre.pack(pady=20)
         root.update()
         data = extraire.nettoyer_data(pd.read_csv(extraire.repertoire+"df_complet.csv", dtype={'metier': "string", 'identifiant': "string", 'competences': "string", 'savoir-etre': "string"}))
-        info = connecter.enregister_bdd(data)
+        info = connecter.enregister_bdd(data) # enregistre le corpus de compétences en base de données et retourne un message de succes ou d'erreur
         titre.config(text=info)
         root.update()
         root.mainloop()
-
-
-
-
 

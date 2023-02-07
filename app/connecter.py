@@ -32,6 +32,10 @@ class connecter:
         Enregistre les données passés en paramettre dans une table 'competences'
         Si la connexion réussi : retourne un message de succes
         Si la connexion échoue : retourne un message d'erreur
+        Parameters
+        -------
+        data : dataframe
+            corpus de compétences sous format dataframe
         Returns
         -------
         m : str
@@ -66,6 +70,9 @@ class connecter:
             return m
 
     def sauvegarder():
+        """
+        Interface graphique indiquant que la sauvegarde est en cours ou bien terminé avec succes ou echec
+        """
         root = Tk()
         root.geometry('500x200')
         root.title('Compétences Plus')

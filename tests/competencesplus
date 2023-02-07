@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-reldir="$( dirname -- "$0"; )";
-cd "$reldir";
-directory="$( pwd; )";
-#pip install -r requirements.txt
-python app/main.py
-done

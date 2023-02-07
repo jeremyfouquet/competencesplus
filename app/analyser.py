@@ -30,7 +30,6 @@ class analyser:
     def grp_metier(data):
         """
         retourne un dataframe en 2 colonnes (metier, nb_ligne)
-
         Params
         -------
         data : dataframe
@@ -46,7 +45,6 @@ class analyser:
     def mediane(data, colname, f=False):
         """
         retourne la mediane d'une série de nombre
-
         Params
         -------
         data : dataframe
@@ -55,7 +53,6 @@ class analyser:
             nom de la colonne dont est calculé la mediane
         f : boolean
             False par defaut, si True retourne une valeur float en resultat
-
         Return
         -------
         m : integer|float
@@ -68,8 +65,7 @@ class analyser:
 
     def equilibre_data(data):
         """
-        Equilibre les données du corpus data en supprimant les métiers n'ayant pas assez de lignes et en ne gardant qu'un certain nombre de données pour les metiers restant
-
+        Equilibre les données du corpus passé en paramettre en supprimant les métiers non représentatif et en gardant uniquement un nombre n de données >= à la mediane
         Params
         -------
         data : dataframe
@@ -87,8 +83,7 @@ class analyser:
 
     def competences_occurences(data, nb=15, metier=None):
         """
-        Affiche les n compétences les plus fréquentes ainsi que leurs nombre de répétition dans l'ensemble du texte
-
+        Affiche les n=nb compétences les plus fréquentes ainsi que leurs nombre de répétition par metier=metier
         Params
         -------
         data : dataframe
@@ -118,7 +113,6 @@ class analyser:
     def metier_competences(data):
         """
         Créé et retourne un dataframe en regroupant l'ensemble des compétence par metier
-
         Params
         -------
         data : dataframe
@@ -138,14 +132,12 @@ class analyser:
     def tf_idf(data, metier):
         """
         Convertie la colonne 'competences' à l'aide de TfidfVectorizer au format TF-IDF (fréquence de terme - fréquence de document inverse) avec la distance cosinus pour trouver les voisins les plus proches du metier en parametre.
-
         Params
         -------
         data : dataframe
             dataframe du corpus de compétences en 4 colonnes (identifiant, metier, competences, date)
         metier : str
             titre du metier à partir duquel nous calculons la distance
-
         Return
         -------
         result : dataframe

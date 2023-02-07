@@ -11,7 +11,6 @@ class connecter:
     def connecter_bdd():
         """
         Se connecte à la base postgreSql
-
         Returns
         -------
         conn : connection
@@ -30,13 +29,9 @@ class connecter:
 
     def enregister_bdd(data):
         """
-        Enregistre les données recupérés par la fonction charger_et_nettoyer()
-        depuis une connexion en base de donnée par la fonction connect_bdd()
-        Si la connexion réussi :
-            Créé une table 'competences' si celle si n'existe pas encore et enregistre les ressources avant de fermer la connexion
-        Si la connexion échoue :
-            Affiche l'erreur
-
+        Enregistre les données passés en paramettre dans une table 'competences'
+        Si la connexion réussi : retourne un message de succes
+        Si la connexion échoue : retourne un message d'erreur
         Returns
         -------
         m : str
@@ -86,14 +81,9 @@ class connecter:
 
     def sauvegarder_bdd_csv():
         """
-        Charge les données depuis une connexion en base de donnée par la fonction connect_bdd() pour les enregistrer dans un fchier csv
-        Si la connexion réussi :
-            Charge toutes les lignes trié par metier et date de mise à jour
-            Créé un fichier csv avec les données chargées
-            Ferme la connexion
-        Si la connexion échoue :
-            Affiche l'erreur
-
+        Charge la base de donnée pour enregistrer les données dans un fichier csv
+        Si la connexion réussi : retourne un message de succes
+        Si la connexion échoue : retourne un message d'erreur
         Returns
         -------
         m : str
@@ -119,13 +109,9 @@ class connecter:
 
     def charger_bdd_ou_csv():
         """
-        Charge les données depuis une connexion en base de donnée par la fonction connect_bdd() ou depuis un fichier local csv
-        Si la connexion réussi :
-            Charge dans un dataframe les donnée de la base trié par metier et date de mise à jour
-            Ferme la connexion
-        Si la connexion échoue :
-            Charge dans un dataframe le fichier csv
-
+        Charge la base de donnée ou le fichier local csv
+        Si la connexion réussi : retourne un message de succes
+        Si la connexion échoue : retourne un message d'erreur
         Returns
         -------
         df : dataframe

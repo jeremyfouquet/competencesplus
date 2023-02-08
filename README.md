@@ -80,7 +80,7 @@ $ make unitstests
         ├── connecter_t.py
         └── mocks.csv
     ├── Makefile : contient les directives d'automatisation de tests, de nettoyage, d'installation de dépendances et de lancement du programme
-    ├── config.json : contient les congigurations de connection PostgreSQL
+    ├── config.json : contient les configurations de connection PostgreSQL
     ├── LICENSE : contient la licence MIT
     ├── requirements.txt : contient toutes les dépendances et version nécessaires
     └── README.md : contient la description du programme et la documentation technique

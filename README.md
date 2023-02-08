@@ -59,19 +59,19 @@ $ make linux_packages
 
 ## Structure
     .
-    ├── app
+    ├── app : contient les modules du programme
         ├── main.py
         ├── extraire.py
         ├── analyser.py
         └── connecter.py
-    ├── assets
-    ├── tests
+    ├── assets : contient les fichiers d'extractions
+    ├── tests : contient les modules de tests unitaires
         ├── extraire_t.py
         ├── analyser_t.py
         ├── connecter_t.py
         └── mocks.csv
-    ├── Makefile
-    ├── config.json
-    ├── LICENSE
-    ├── requirements.txt
-    └── README.md
+    ├── Makefile : contient les directives d'automatisation de tests, de nettoyage, d'installation de dépendances et de lancement du programme
+    ├── config.json : contient les congigurations de connection PostgreSQL
+    ├── LICENSE : contient la licence MIT
+    ├── requirements.txt : contient toutes les dépendances et version nécessaires
+    └── README.md : contient la description du programme et la documentation technique

@@ -50,11 +50,16 @@ Nettoyer le cache
 $ make clean
 ```
 
-Installer les packages suivant (pouvant être manquant sur le système linux):
+Installer les packages suivant (pouvant être manquant sur le système linux)
 - python3-venv
 - python3-tk
 ```
 $ make linux_packages
+```
+
+Executer les tests unitaires
+```
+$ make unitstests
 ```
 
 ## Structure

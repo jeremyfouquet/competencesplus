@@ -54,7 +54,7 @@ Installer les packages suivant (pouvant être manquant sur le système linux)
 - python3-venv
 - python3-tk
 ```
-$ make linux_packages
+$ make i_linuxpackages
 ```
 
 Executer les tests unitaires

@@ -54,11 +54,17 @@ Nettoyer le cache
 $ make clean
 ```
 
-Installer les packages suivant (pouvant être manquant sur le système linux)
+Installer chrome (sur le système linux)
+```
+$ make i_chrome
+```
+
+Installer l’ensemble des packages suivant (sur le système linux)
+- python3
 - python3-venv
 - python3-tk
 ```
-$ make i_linuxpackages
+$ make i_packages
 ```
 
 Executer les tests unitaires

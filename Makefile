@@ -27,8 +27,12 @@ clean:
 	rm -rf app/__pycache__
 	rm -rf venv
 
-i_linuxpackages:
-	sudo apt-get install python3-tk
-	sudo apt-get install python3-venv
+i_chrome:
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo dpkg -i google-chrome-stable_current_amd64.deb
+	rm google-chrome-stable_current_amd64.deb
 
-.PHONY: run clean unittests i_linuxpackages
+i_packages:
+	sudo apt install $(P3) python3-tk python3-venv
+
+.PHONY: run clean unittests i_packages i_chrome

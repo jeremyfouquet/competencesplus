@@ -1,12 +1,16 @@
 # CompetencesPlus
 
-Application de recherche et analyse de compétences en informatique
+Étude des compétences professionnelles en informatiques dans le cadre de la fouille de données et de l'ingénierie des langues
 
 ## Version
 
 1.0.0
 
 ## Projet
+
+## Description
+
+Ce programme permet d'établir un corpus de compétences depuis des offres d'emploi dans une approche d’ingénierie des langues, et ensuite d’analyser et d’évaluer ce corpus dans une approche de fouille de données. Le programme permet de mettre en évidence les compétences professionnelles les plus recherchées du domaine de l’informatique en France. Il permet de répondre à la problématique : quelles sont les compétences les plus recherchées dans un métier issu du domaine de l’informatique en France et est-il possible de rapprocher les métiers entre eux en fonction des compétences recherchées par les recruteurs ?
 
 ## Auteur
 

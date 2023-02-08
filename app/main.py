@@ -38,7 +38,14 @@ class main:
             connecter.sauvegarder()
         elif main.value == 3:
             # évaluation du corpus de compétences
-            analyser.commencer()
+            try:
+                analyser.commencer()
+            except OSError as error:
+                root = Tk()
+                root.title('Compétences Plus')
+                label = Label(text='Impossible de se connecter à la base ou de charger le fichier csv\n'+str(error))
+                label.pack(pady=20)
+                root.mainloop()
         else :
             exit(0)
         main.value = -1

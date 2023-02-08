@@ -19,7 +19,9 @@ run: venv
 	$(PYTHON) app/main.py
 
 unittests: venv
-	$(PYTHON) app/extraire_t.py
+	$(PYTHON) tests/extraire_t.py
+	$(PYTHON) tests/connecter_t.py
+	$(PYTHON) tests/analyser_t.py
 
 clean:
 	rm -rf app/__pycache__

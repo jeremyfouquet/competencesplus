@@ -40,7 +40,7 @@ class analyser:
 
     def grp_metier(data):
         """
-        retourne un dataframe en 2 colonnes (metier, nb_ligne)
+        retourne un dataframe avec les metiers pour index et le nombre de ligne comme unique colonne
         Parameters
         -------
         data : dataframe

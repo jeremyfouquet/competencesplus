@@ -1,5 +1,7 @@
 import unittest
 import pandas as pd
+import sys
+sys.path.insert(1, 'app')
 from extraire import extraire
 
 class TestExtraire(unittest.TestCase):

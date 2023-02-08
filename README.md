@@ -66,6 +66,10 @@ $ make linux_packages
         └── connecter.py
     ├── assets
     ├── tests
+        ├── extraire_t.py
+        ├── analyser_t.py
+        ├── connecter_t.py
+        └── mocks.csv
     ├── Makefile
     ├── config.json
     ├── LICENSE

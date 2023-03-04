@@ -99,7 +99,7 @@ class extraire:
         for i in range(nb_jobs):
             # L'offre est extraite uniquement si elle est toujours en ligne
             try:
-                WebDriverWait(driver, 120).until(EC.presence_of_element_located((By.ID, "labelPopinDetails")))
+                WebDriverWait(driver, 120).until(EC.presence_of_element_located((By.ID, "labelPopinDetailsOffre")))
                 sources.append(driver.page_source)
             except TimeoutException:
                 pass

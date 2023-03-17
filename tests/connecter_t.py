@@ -13,6 +13,7 @@ class TestConnecter(unittest.TestCase):
 
     def test_charger_bdd_ou_csv(self):
         ''' Test la fonction charger_bdd_ou_csv() => est une instance de DataFrame, le DataFrame de retour possède 4 colonnes '''
+        connecter.enregister_bdd([])
         df = connecter.charger_bdd_ou_csv()
         self.assertIsInstance(df, pd.DataFrame)
         self.assertEqual(len(df.columns), 4)
